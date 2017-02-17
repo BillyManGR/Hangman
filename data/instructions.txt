@@ -1,0 +1,6 @@
+Welcome to Hangman! :) The game is available in two modes. 1-Player and 2-players.
+In 1-player mode, the player chooses a category from which a random word will be chosen.
+In 2-players mode, one player chooses a word and the other tries to find it.
+Categories are:
+1) General 2) Animals 3) Plants .........
+Please enter '1' for 1-Player or '2' for 2-players mode.
