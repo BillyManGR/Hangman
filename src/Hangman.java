@@ -2,9 +2,9 @@ import java.util.*;
 import java.io.*;
 
 public class Hangman {
-    int mode;
 
-   public static void print_file(String name)throws FileNotFoundException {
+    int mode;
+    public static void print_file(String name)throws FileNotFoundException {         //Prints a file
        File file = new File(name);
        try {
            Scanner sc = new Scanner(file);
@@ -19,7 +19,7 @@ public class Hangman {
     }
 
     public void play(){
-        mode = mode_selection();                                                    //Select mode (checked)
+        mode = mode_selection();                                                    //Select mode
         if (mode == 1) {
             System.out.println("Calling 1 Player mode");//one_player();
         } else if (mode == 2) {
@@ -33,19 +33,21 @@ public class Hangman {
             Scanner scanner = new Scanner(System.in);
             String selection = scanner.nextLine();
             //System.out.println("Selection = "+selection);
-            if (selection == "1") {
-                System.out.println("Selected mode is 1 Player");
-                return 1;
-            } else if (selection == "2") {
-                System.out.println("Selected mode is 2 players");
-                return 2;
-            } else
-                System.out.println("Invalid selection. Please enter '1' for 1-Player, '2' for 2-Players mode.");
+            switch (selection){
+                case "1":
+                    System.out.println("Selected mode is 1 Player");
+                    return 1;
+                case "2":
+                    System.out.println("Selected mode is 2 players");
+                    return 2;
+                default:
+                    System.out.println("Invalid selection. Please enter '1' for 1-Player or '2' for 2-Players mode.");
+            }
         }
     }
 
-    public static void main(String[] args) throws Exception{
-        print_file("data/hangman.txt");                                  //Welcome sign
+    public static void main(String[] args) throws FileNotFoundException{
+        print_file("data/hangman.txt");                                  //Hangman sign
         System.out.println("");
         print_file("data/instructions.txt");                             //Instructions of the game
         //this.play();
