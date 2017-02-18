@@ -18,40 +18,13 @@ public class Hangman {
        }
     }
 
-    public static void play(){
-        mode = mode_selection();                                                    //Select mode
-        if (mode == 1) {
-            System.out.println("Calling 1 Player mode");//one_player();
-        } else if (mode == 2) {
-            System.out.println("Calling 2 Player mode");//two_players();
-        }
-    }
 
-    public static int mode_selection() {
-        while (true) {
-            System.out.print("Selection> ");
-            Scanner scanner = new Scanner(System.in);
-            String selection = scanner.nextLine();
-            //System.out.println("Selection = "+selection);
-            switch (selection){
-                case "1":
-                    System.out.println("Selected mode is 1 Player");
-                    new OnePlayerGame();
-                    return 1;
-                case "2":
-                    System.out.println("Selected mode is 2 players");
-                    return 2;
-                default:
-                    System.out.println("Invalid selection. Please enter '1' for 1-Player or '2' for 2-Players mode.");
-            }
-        }
-    }
 
     public static void main(String[] args) throws FileNotFoundException{
         print_file("data/hangman.txt");                                  //Hangman sign
         System.out.println("");
         print_file("data/instructions.txt");                             //Instructions of the game
-        play();
+        BaseGame.play();
     }
 }
 /*
