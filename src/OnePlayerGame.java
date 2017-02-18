@@ -45,21 +45,44 @@ public class OnePlayerGame extends BaseGame {
 
 			}
 		} while (! wordIsGuessed && !(triesCount==9));
-		
+
 		printFinalMessage(wordIsGuessed,wordToGuess);
-		ChooseWhatToDoNext();
-		
+		chooseWhatToDoNext();
+
 	}
+
+	@Override
+	protected void chooseWhatToDoNext() {
+		System.out.println("1 to play again with same category");
+		System.out.println("2 to play again and change category");
+		System.out.println("3 switch playing mode");
+		System.out.println("4 Quit");
+		System.out.println("Select >");
+		while(true){
+			Scanner scanner = new Scanner(System.in);
+			String selection = scanner.nextLine();
+			switch (selection){
+			case "1":
+				System.out.println("Selected play again with same category");
+				return;
+			case "2":
+				System.out.println("Selected play again and change category");
+				return;
+			case "3":
+				BaseGame.play();
+				return;
+			default:
+				System.out.println("Invalid selection");
+			}
+		}
 	
-	private void ChooseWhatToDoNext() {
-		BaseGame.play();
 	}
 
 
 
 	private void printFinalMessage(boolean win, String correctWord){
 		if(win){
-			System.out.println("Congraturations, you guessed the word with only "+ triesCount  +"wrong tries");
+			System.out.println("Congraturations, you guessed the word with only "+ triesCount  +" wrong tries");
 		}
 		else{
 			System.out.println("Sorry, you did NOT manage to guess the word");
@@ -67,11 +90,11 @@ public class OnePlayerGame extends BaseGame {
 		}
 	}
 
-	
 
 
 
-	
+
+
 
 
 

@@ -72,6 +72,10 @@ public class BaseGame {
 		return i;
 	}
 	
+	protected void chooseWhatToDoNext() {
+		System.out.println("Please choose what to do next");
+	}
+	
 	
 	 //Select mode
     public static  void play(){
@@ -84,11 +88,10 @@ public class BaseGame {
 
     public static  PlayMode mode_selection() {
         while (true) {
-        	System.out.print("Please enter '1' for 1-Player or '2' for 2-players mode.");
-            System.out.print("Selection> ");
+        	System.out.println("Please enter '1' for 1-Player or '2' for 2-players mode.");
+            System.out.println("Selection> ");
             Scanner scanner = new Scanner(System.in);
             String selection = scanner.nextLine();
-            //System.out.println("Selection = "+selection);
             switch (selection){
                 case "1":
                     System.out.println("Selected mode is 1 Player");
