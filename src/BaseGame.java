@@ -8,6 +8,11 @@ public class BaseGame {
 		LETTER_NEW_CORRECT,
 		LETTER_ALREADY_ENTERED,
 	}
+	
+	public enum PlayMode {
+		PLAY_ONE_PLAYER,
+		PLAY_TWO_PLAYERS,
+	}
 	protected  boolean wordIsGuessed;
 	
 	public BaseGame(){
@@ -68,16 +73,16 @@ public class BaseGame {
 	}
 	
 	
-    public static void play(){
-        int mode = mode_selection();                                                    //Select mode
-        if (mode == 1) {
-        	new OnePlayerGame();
-        } else if (mode == 2) {
-            System.out.println("Calling 2 Player mode");//two_players();
-        }
+	 //Select mode
+    public static  void play(){
+        if(mode_selection() == PlayMode.PLAY_ONE_PLAYER )
+        	 new OnePlayerGame();
+        else
+        	new TwoPlayerGame();
     }
+    
 
-    public static int mode_selection() {
+    public static  PlayMode mode_selection() {
         while (true) {
         	System.out.print("Please enter '1' for 1-Player or '2' for 2-players mode.");
             System.out.print("Selection> ");
@@ -87,10 +92,10 @@ public class BaseGame {
             switch (selection){
                 case "1":
                     System.out.println("Selected mode is 1 Player");
-                    return 1;
+                    return PlayMode.PLAY_ONE_PLAYER ;
                 case "2":
                     System.out.println("Selected mode is 2 players");
-                    return 2;
+                    return PlayMode.PLAY_TWO_PLAYERS ;
                 default:
                     System.out.println("Invalid selection. Please enter '1' for 1-Player or '2' for 2-Players mode.");
             }

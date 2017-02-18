@@ -3,4 +3,3 @@ In 1-player mode, the player chooses a category from which a random word will be
 In 2-players mode, one player chooses a word and the other tries to find it.
 Categories are:
 General Animals Plants .........
-Please enter '1' for 1-Player or '2' for 2-players mode.
