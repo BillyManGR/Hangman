@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Hangman {
 
-    int mode;
+    static int mode;
     public static void print_file(String name)throws FileNotFoundException {         //Prints a file
        File file = new File(name);
        try {
@@ -18,7 +18,7 @@ public class Hangman {
        }
     }
 
-    public void play(){
+    public static void play(){
         mode = mode_selection();                                                    //Select mode
         if (mode == 1) {
             System.out.println("Calling 1 Player mode");//one_player();
@@ -27,7 +27,7 @@ public class Hangman {
         }
     }
 
-    public int mode_selection() {
+    public static int mode_selection() {
         while (true) {
             System.out.print("Selection> ");
             Scanner scanner = new Scanner(System.in);
@@ -36,6 +36,7 @@ public class Hangman {
             switch (selection){
                 case "1":
                     System.out.println("Selected mode is 1 Player");
+                    new OnePlayerGame();
                     return 1;
                 case "2":
                     System.out.println("Selected mode is 2 players");
@@ -50,7 +51,7 @@ public class Hangman {
         print_file("data/hangman.txt");                                  //Hangman sign
         System.out.println("");
         print_file("data/instructions.txt");                             //Instructions of the game
-        //this.play();
+        play();
     }
 }
 /*
