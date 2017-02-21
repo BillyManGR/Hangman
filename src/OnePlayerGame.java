@@ -85,6 +85,9 @@ public class OnePlayerGame extends BaseGame {
 			case "3":
 				BaseGame.play();
 				return;
+			case "4":
+				System.out.println("Thank you for your interest in the game");
+				System.exit(0);
 			default:
 				System.out.println("Invalid selection");
 			}
