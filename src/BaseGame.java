@@ -6,7 +6,8 @@ public class BaseGame {
 	public enum LetterStates {
 		LETTER_NOT_IN_WORD,
 		LETTER_NEW_CORRECT,
-		LETTER_ALREADY_ENTERED,
+		LETTER_ALREADY_ENTERED, 
+		LETTER_EMPTY_STRING,
 	}
 	
 	public enum PlayMode {
@@ -18,14 +19,22 @@ public class BaseGame {
 	public BaseGame(){
 		wordIsGuessed= false;
 	}
+	protected void refreshWordStatus(){
+		wordIsGuessed=false;
+	}
 	
-	
-	public void  loadWords(){}
+	protected String  loadWord(){
+		return null;}
 	
 	public LetterStates enterLetter(String wordToGuess, char[] alreadyEnteredWords) {
 		System.out.print("Enter a new lettter ");
 		System.out.print(" > ");
-		char inputChar = new Scanner(System.in).nextLine().charAt(0);
+		String keyboard = new Scanner(System.in).nextLine();
+
+	
+		if(keyboard.isEmpty()) return LetterStates.LETTER_EMPTY_STRING;
+		
+		char inputChar = keyboard.charAt(0);
 
 		if (inEnteredLetters(inputChar, alreadyEnteredWords)) {
 			System.out.println(inputChar + " is already in the word");

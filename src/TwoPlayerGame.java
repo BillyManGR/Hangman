@@ -4,14 +4,7 @@ public class TwoPlayerGame extends BaseGame  {
 	
 	//constructor
 	public TwoPlayerGame(){
-		loadWords();
 
 	}
 	
-	@Override
-	public void  loadWords(){
-		//temporary test load
-	
-	}
-
 }
