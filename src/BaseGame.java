@@ -30,6 +30,7 @@ public class BaseGame {
 		System.out.print("Enter a new lettter ");
 		System.out.print(" > ");
 		String keyboard = new Scanner(System.in).nextLine();
+		System.out.println("Keyboard scnner"+ keyboard);
 
 	
 		if(keyboard.isEmpty()) return LetterStates.LETTER_EMPTY_STRING;

@@ -83,6 +83,7 @@ public class OnePlayerGame extends BaseGame {
 				playOnePlayerGame(loadWord());
 				return;
 			case "3":
+				System.out.println("Selected swith mode");
 				BaseGame.play();
 				return;
 			case "4":
