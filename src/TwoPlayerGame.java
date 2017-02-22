@@ -21,8 +21,13 @@ public class TwoPlayerGame extends BaseGame  {
 		String word = scanner.nextLine();
 		return word; 
 	}
-
-
+	/**
+	 * This method  is exactly the same as playOnePlayerGame
+	 *  will keep them separate if you want to implement somewhat different logic
+	 *  
+	 *  otherwise  refactor by extracting to base class 
+	 *  
+	 *  */
 	private void playTwoPlayerGame(String word) {
 		int triesCount=0;
 		char[] enteredLetters = new char[word.length()];
