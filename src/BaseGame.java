@@ -114,6 +114,16 @@ public class BaseGame {
             }
         }
     }
+    
+	protected void printFinalMessage(boolean win, String correctWord, int triesCount){
+		if(win){
+			System.out.println("Congraturations, you guessed the word with only "+ triesCount  +" wrong tries");
+		}
+		else{
+			System.out.println("Sorry, you did NOT manage to guess the word");
+			System.out.println("The word was "+ correctWord);
+		}
+	}
 
 
 	
