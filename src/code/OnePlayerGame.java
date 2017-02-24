@@ -1,3 +1,4 @@
+package code;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,52 +11,49 @@ import java.util.Scanner;
 public class OnePlayerGame extends BaseGame {
 
 	private OpenFile openFile;
-	
-	//don't like the global fileName here; but anyway
+
+	// don't like the global fileName here; but anyway
 	private String fileName;
 
-	//construction
-	public OnePlayerGame(){
-		super();  
+	// construction
+	public OnePlayerGame() {
+		super();
 		openFile = new OpenFile();
-		fileName= openFile.chooseFile();
-		String word  = loadWord();
-		playOnePlayerGame(word);
+		fileName = openFile.chooseFile();
+		String word = loadWord();
+		setWordToGuess(word);
+		playOnePlayerGame();
 
 	}
 
-
-
 	@Override
-	protected String  loadWord(){
+	protected String loadWord() {
 		return openFile.chooseWord(fileName);
 
 	}
 
-	private void playOnePlayerGame(String wordToGuess) {
-		int triesCount=0;
-		char[] enteredLetters = new char[wordToGuess.length()];
+	private void playOnePlayerGame() {
+		int triesCount = 0;
 		do {
-			//iterate through cycle as long as enterLetter returns true
-			switch (enterLetter(wordToGuess, enteredLetters)) {
-				case LETTER_NOT_IN_WORD:
-					triesCount++;
-					break;
-				case  LETTER_NEW_CORRECT:
-					break;
-				case LETTER_ALREADY_ENTERED:
-					triesCount++;
-					break;
-				case LETTER_EMPTY_STRING:
-					System.out.println("You entered an empty string");
-					triesCount++;
-					break;
-
+			// iterate through cycle as long as enterLetter returns true
+			switch (enterLetter()) {
+			case LETTER_NOT_IN_WORD:
+				triesCount++;
+				break;
+			case LETTER_NEW_CORRECT:
+				break;
+			case LETTER_ALREADY_ENTERED:
+				triesCount++;
+				break;
+			case LETTER_EMPTY_STRING:
+				System.out.println("You entered an empty string");
+				triesCount++;
+				break;
 
 			}
-		} while (! wordIsGuessed && !(triesCount==9));
+		} while (!wordIsGuessed && !(triesCount == 9));
 
-		printFinalMessage(wordIsGuessed,wordToGuess,triesCount);
+		printFinalMessage(wordIsGuessed, getWordToGuess(), triesCount);
 		chooseWhatToDoNext();
 
 	}
@@ -67,20 +65,22 @@ public class OnePlayerGame extends BaseGame {
 		System.out.println("3 switch playing mode");
 		System.out.println("4 Quit");
 		System.out.println("Select >");
-		while(true){
+		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();
-			switch (selection){
+			switch (selection) {
 			case "1":
 				System.out.println("Selected play again with same category");
 				refreshWordStatus();
-				playOnePlayerGame(loadWord());
+				setWordToGuess(loadWord());
+				playOnePlayerGame();
 				return;
 			case "2":
 				System.out.println("Selected play again and change category");
 				refreshWordStatus();
-				fileName= openFile.chooseFile();
-				playOnePlayerGame(loadWord());
+				fileName = openFile.chooseFile();
+				setWordToGuess(loadWord());
+				playOnePlayerGame();
 				return;
 			case "3":
 				System.out.println("Selected swith mode");
@@ -95,19 +95,5 @@ public class OnePlayerGame extends BaseGame {
 		}
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
