@@ -15,7 +15,7 @@ public class LetterInputTest {
 	BaseGame game = new BaseGame();
 
 	@Test
-	public void test() {
+	public void testInputAllNew() {
 		String inputWord= "testword";
 		String inputLetters= "tesword";
 		game.setWordToGuess(inputWord);
@@ -25,7 +25,9 @@ public class LetterInputTest {
 			in= new ByteArrayInputStream(String.valueOf(l).getBytes());
 			System.setIn(in);
 			System.setOut(new PrintStream(out)); //direct the output 
+			
 			LetterStates result = game.enterLetter();
+			
 			assertEquals(result, LetterStates.LETTER_NEW_CORRECT);
 		}
 	

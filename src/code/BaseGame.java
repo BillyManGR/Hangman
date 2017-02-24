@@ -15,6 +15,7 @@ public class BaseGame {
 		PLAY_TWO_PLAYERS,
 	}
 	protected boolean wordIsGuessed;
+	protected boolean showHiddenWord; //print the starts on first try
 	private String wordToGuess;
 
 	private char[] alreadyEnteredLetters;
@@ -22,11 +23,13 @@ public class BaseGame {
 	public BaseGame() {
 		wordIsGuessed = false;
 		wordToGuess= null;
+		showHiddenWord= true;
 		alreadyEnteredLetters= null;
 	}
 
 	protected void refreshWordStatus() {
 		wordIsGuessed = false;
+		showHiddenWord= true;
 	}
 
 	protected String loadWord() {
@@ -34,14 +37,16 @@ public class BaseGame {
 	}
 
 	public LetterStates enterLetter() {
+		printWordFirstTime();
 		System.out.print("Enter a new lettter ");
 		System.out.print(" > ");
 		String keyboard = new Scanner(System.in).nextLine();
-		System.out.println("Keyboard scnner" + keyboard);
 
 		if (keyboard.isEmpty())
 			return LetterStates.LETTER_EMPTY_STRING;
 
+		
+		
 		char inputChar = keyboard.charAt(0);
 
 		if (inEnteredLetters(inputChar, alreadyEnteredLetters)) {
@@ -58,6 +63,10 @@ public class BaseGame {
 			System.out.println(inputChar + " is not in the word");
 			return LetterStates.LETTER_NOT_IN_WORD;
 		}
+	}
+
+	private void printWordFirstTime() {
+		if (showHiddenWord) {printWord(wordToGuess, alreadyEnteredLetters);showHiddenWord=false;}	
 	}
 
 	/* Check if letter is in enteredLetters array */

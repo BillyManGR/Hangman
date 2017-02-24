@@ -19,7 +19,6 @@ public class OpenFile {
 
 	private int generateNewRandom(int range, int previousRandom) {
 		int newRandom = (int) (Math.random() * range);
-		System.out.println("Current random " + newRandom + "previousRandom " + previousRandom);
 		if (newRandom != previousRandom)
 			return newRandom;
 		else {
@@ -43,18 +42,17 @@ public class OpenFile {
 	public String chooseFile() {
 		int randomFileIndex = generateNewRandom(listOfFiles.length, previousRandom);
 		previousRandom = randomFileIndex;
-		System.out.println("returned new random" + randomFileIndex);
+		//System.out.println("returned new random" + randomFileIndex);
 		return listOfFiles[randomFileIndex].getName();
 
 	}
 
 	public String chooseWord(String fileName) {
 		System.out.println("Random file is " + fileName);
-		String word = "NONE";
+		String word = null;
 		File file = new File(FILE_PATH_DIR + "/" + fileName);
 		try {
-			int randomWordPick = (int) (Math.random() * countLines(fileName));
-			System.out.println("RandomWordPick " + randomWordPick);
+			int randomWordPick = (int) (Math.random() * countLines(fileName)) +1;
 			int currentLine = 0;
 			Scanner sc = new Scanner(file);
 
@@ -62,9 +60,6 @@ public class OpenFile {
 				word = sc.nextLine();
 				currentLine++;
 			}
-			// as random index can be 0, and does not go in the while loop
-			if (word.equals("NONE"))
-				word = sc.nextLine();
 			sc.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,6 +71,9 @@ public class OpenFile {
 	/**
 	 * Function found in the Internet Relative performance: "s. On a 150MB log
 	 * file this takes 0.35 seconds, versus 2.40 seconds when using readLines()"
+	 * 
+	 * UPDATE: please press enter on the last word as if not will not be caunter.
+	 * Can't think of easy fix for this.
 	 * 
 	 * @param filename
 	 * @return
