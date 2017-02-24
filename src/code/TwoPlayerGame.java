@@ -15,9 +15,10 @@ public class TwoPlayerGame extends BaseGame {
 
 	@Override
 	protected String loadWord() {
-		System.out.println("Make sure the other player is not looking at the screen");
-		System.out.println("Please enter  a word to guess");
-		System.out.println("Word to guess> ");
+		System.out.print("Make sure the other player is not looking at the screen"+ newline
+				+ "Please enter  a word to guess"+ newline
+				+ "Word to guess> ");
+	
 		// TODO: make some error handling for wrong input
 		Scanner scanner = new Scanner(System.in); // <-- don't close standard
 													// input! it breaks
@@ -60,10 +61,12 @@ public class TwoPlayerGame extends BaseGame {
 
 	@Override
 	protected void chooseWhatToDoNext() {
-		System.out.println("1 Play again and enter a new word to guess");
-		System.out.println("2 Switch playing mode");
-		System.out.println("3 Quit");
-		System.out.println("Select >");
+		System.out.print(""
+				+ "1 Play again and enter a new word to guess"+ newline
+				+ "2 Switch playing mode"+ newline
+				+ "3 Quit"+newline
+				+ "Select> "
+				);
 		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();

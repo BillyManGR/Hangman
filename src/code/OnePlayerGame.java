@@ -60,11 +60,14 @@ public class OnePlayerGame extends BaseGame {
 
 	@Override
 	protected void chooseWhatToDoNext() {
-		System.out.println("1 to play again with same category");
-		System.out.println("2 to play again and change category");
-		System.out.println("3 switch playing mode");
-		System.out.println("4 Quit");
-		System.out.println("Select >");
+		System.out.print(""
+				+ "1 to play again with same category"+ newline
+				+ "2 to play again and change category"+ newline
+				+ "3 switch playing mode"+ newline
+				+ "4 Quit"+ newline
+				+ "Select> "
+				);
+		
 		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();
@@ -90,7 +93,8 @@ public class OnePlayerGame extends BaseGame {
 				System.out.println("Thank you for your interest in the game");
 				System.exit(0);
 			default:
-				System.out.println("Invalid selection");
+				System.out.print("Invalid selection"+ newline
+						+ "Select> ");
 			}
 		}
 

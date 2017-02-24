@@ -14,6 +14,7 @@ public class BaseGame {
 		PLAY_ONE_PLAYER, 
 		PLAY_TWO_PLAYERS,
 	}
+	public static String newline = System.getProperty("line.separator");
 	protected boolean wordIsGuessed;
 	protected boolean showHiddenWord; //print the starts on first try
 	private String wordToGuess;
@@ -38,8 +39,7 @@ public class BaseGame {
 
 	public LetterStates enterLetter() {
 		printWordFirstTime();
-		System.out.print("Enter a new lettter ");
-		System.out.print(" > ");
+		System.out.print("Enter a new lettter> ");
 		String keyboard = new Scanner(System.in).nextLine();
 
 		if (keyboard.isEmpty())
@@ -89,7 +89,7 @@ public class BaseGame {
 		}
 		if (wordGuessed)
 			wordIsGuessed = true;
-		System.out.print('\n');
+		System.out.print(newline);
 
 	}
 
