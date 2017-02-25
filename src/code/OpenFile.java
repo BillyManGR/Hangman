@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * @author vikto
+ *
+ */
 public class OpenFile {
 	private final String FILE_PATH_DIR = "words";
 	private int previousRandom;
@@ -17,17 +21,17 @@ public class OpenFile {
 
 	}
 
-	private int generateNewRandom(int range, int previousRandom) {
-		int newRandom = (int) (Math.random() * range);
-		if (newRandom != previousRandom)
-			return newRandom;
-		else {
-			while (newRandom == previousRandom) {
-				newRandom = (int) (Math.random() * range);
-			}
-			return newRandom;
-		}
-	}
+	//	private int generateNewRandom(int range, int previousRandom) {
+	//		int newRandom = (int) (Math.random() * range);
+	//		if (newRandom != previousRandom)
+	//			return newRandom;
+	//		else {
+	//			while (newRandom == previousRandom) {
+	//				newRandom = (int) (Math.random() * range);
+	//			}
+	//			return newRandom;
+	//		}
+	//	}
 
 	private void listFiles() {
 		File folder = new File(FILE_PATH_DIR);
@@ -40,10 +44,70 @@ public class OpenFile {
 	}
 
 	public String chooseFile() {
-		int randomFileIndex = generateNewRandom(listOfFiles.length, previousRandom);
-		previousRandom = randomFileIndex;
+		//int randomFileIndex = generateNewRandom(listOfFiles.length, previousRandom);
+		//previousRandom = randomFileIndex;
+		System.out.println("Please select a categoty you want to play!");
+		
+		listOfFiles = moveGeneralCategoryAsFirstOption(listOfFiles);;
+
+		//print all options
+		int filesCount=listOfFiles.length;
+		for(int i=0; i<filesCount;i++){
+			System.out.println(String.valueOf(i+1)+" "+listOfFiles[i].getName());
+		}
+
+		System.out.println("Input a number between 1 and " + listOfFiles.length);
+
+		while(true){
+			Scanner scanner = new Scanner(System.in);
+			try{
+				int selection = Integer.valueOf(scanner.nextLine());
+				
+				if(selection>0 && selection <= filesCount){
+					return listOfFiles[selection-1].getName();
+				}else{
+					System.out.println("invalid selection!");
+					System.out.println("Input a number between 1 and " + listOfFiles.length);
+				}
+
+			}catch(NumberFormatException e){
+				System.out.println("Please enter a number!!");
+			}
+		}
 		//System.out.println("returned new random" + randomFileIndex);
-		return listOfFiles[randomFileIndex].getName();
+		//		return listOfFiles[0].getName();
+
+	}
+
+
+
+	/**Move categoty 'general' to first position
+	 * This will move all values from the index of the 'general'
+	 * category backwards in the array by one position,
+	 * and place the 'general' at the front
+	 * should do noting if already at first position
+	 * @param listOfFiles
+	 * @return
+	 */
+	private File[] moveGeneralCategoryAsFirstOption(File[] listOfFiles) {
+
+		int generalIndex=findPositionOfGeneralCategory();
+		File general =listOfFiles[generalIndex];
+
+		for(int i = generalIndex; i>0;i--)
+			listOfFiles[i]=listOfFiles[i-1];
+
+		listOfFiles[0]=general;
+		return listOfFiles;
+	}
+
+	private int findPositionOfGeneralCategory() {
+
+		for(int generalIndex=0;generalIndex<listOfFiles.length;generalIndex++){
+			if(listOfFiles[generalIndex].getName().equals("general")) 
+				return generalIndex;
+		}
+		return 0;
 
 	}
 
