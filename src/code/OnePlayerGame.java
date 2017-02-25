@@ -11,24 +11,37 @@ import java.util.Scanner;
 public class OnePlayerGame extends BaseGame {
 
 	private OpenFile openFile;
-
-	// don't like the global fileName here; but anyway
-	private String fileName;
+	//quick fix make it global; TODO: consider refactor;
+	private String lastFile;
 
 	// construction
 	public OnePlayerGame() {
 		super();
 		openFile = new OpenFile();
-		fileName = openFile.chooseFile();
-		String word = loadWord();
+		lastFile = openFile.chooseFile();
+		String word = loadWord(lastFile);
 		setWordToGuess(word);
 		playOnePlayerGame();
 
 	}
 
-	@Override
-	protected String loadWord() {
-		return openFile.chooseWord(fileName);
+	protected String loadWord( String fileName) {
+		long startTime = System.currentTimeMillis();
+		while(true){
+			String newword= openFile.chooseWord(fileName);
+			
+			//if the word matches the patters return it 
+			if(newword.matches(pattern)) return newword;
+			
+			long estimatedTime = System.currentTimeMillis()-startTime;
+			
+			//if no suitable word is found after 5 sec ask for another category
+			if(estimatedTime>5000){ 
+				fileName= openFile.chooseFile();
+				lastFile=fileName;
+				startTime = System.currentTimeMillis();
+			}
+		}
 
 	}
 
@@ -70,7 +83,7 @@ public class OnePlayerGame extends BaseGame {
 				+ "4 Quit"+ newline
 				+ "Select> "
 				);
-		
+
 		while (true) {
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();
@@ -78,14 +91,16 @@ public class OnePlayerGame extends BaseGame {
 			case "1":
 				System.out.println("Selected play again with same category");
 				refreshWordStatus();
-				setWordToGuess(loadWord());
+				//last category,pick a random word, set it in the "base game"
+				setWordToGuess(loadWord(lastFile));
 				playOnePlayerGame();
 				return;
 			case "2":
 				System.out.println("Selected play again and change category");
 				refreshWordStatus();
-				fileName = openFile.chooseFile();
-				setWordToGuess(loadWord());
+				//ask to choose a category,pick a random word, set it in the "base game"
+				lastFile=openFile.chooseFile();
+				setWordToGuess(loadWord(lastFile));
 				playOnePlayerGame();
 				return;
 			case "3":

@@ -9,21 +9,32 @@ public class TwoPlayerGame extends BaseGame {
 		System.out.println("Entered word " + word);
 		setWordToGuess(word);
 		playTwoPlayerGame();
-	
+
 
 	}
 
-	@Override
+
 	protected String loadWord() {
 		System.out.print("Make sure the other player is not looking at the screen"+ newline
 				+ "Please enter  a word to guess"+ newline
 				+ "Word to guess> ");
-	
-		// TODO: make some error handling for wrong input
-		Scanner scanner = new Scanner(System.in); // <-- don't close standard
-													// input! it breaks
-		String word = scanner.nextLine();
-		return word;
+
+		while(true){
+			Scanner scanner = new Scanner(System.in); // <-- don't close standard
+		
+			String word = scanner.nextLine();
+			if(word.matches(pattern)){
+				return word;
+			}
+			else{
+				System.out.println(""
+						+ "Invalid word ! Only alphanumeric characters"
+						+ "allowed, space and the symbols  #& %");
+				System.out.print("Word to guess> ");
+			
+			}
+		}
+
 	}
 
 	/**

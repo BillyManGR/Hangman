@@ -15,11 +15,13 @@ public class BaseGame {
 		PLAY_ONE_PLAYER, 
 		PLAY_TWO_PLAYERS,
 	}
+	
+	//alphanumeric regex + #  & % + space
+	public static final String pattern= "[a-zA-Z0-9 #&%]*$";
 	public static String newline = System.getProperty("line.separator");
 	public boolean wordIsGuessed;
 	protected boolean showHiddenWord; //print the starts on first try
 	private String wordToGuess;
-
 	private char[] enteredLettersAll;
 	private char[] enterLettersCorrect;
 
@@ -40,9 +42,6 @@ public class BaseGame {
 		enteredLettersAll = new char[100];
 	}
 
-	protected String loadWord() {
-		return null;
-	}
 
 	public LetterStates enterLetter() {
 		printWordFirstTime();
@@ -170,8 +169,7 @@ public class BaseGame {
 	}
 
 	public void setWordToGuess(String wordToGuess) {
-		this.wordToGuess = wordToGuess.toUpperCase();
-		//this is not supposed to be here
+			this.wordToGuess = wordToGuess.toUpperCase();
 	}
 
 	public String getWordToGuess() {
