@@ -28,9 +28,30 @@ public class LetterInputTest {
 			
 			LetterStates result = game.enterLetter();
 			
-			assertEquals(result, LetterStates.LETTER_NEW_CORRECT);
+			
+			assertEquals(LetterStates.LETTER_NEW_CORRECT,result );
 		}
 	
+		System.setIn(System.in);
+		//System.setOut(System.out);
+
+	}
+	
+	@Test
+	public void testNonASCIWord() {
+		String inputWord= "¡√—";
+		String inputLetters= "¡√—asdf";
+		game.setWordToGuess(inputWord);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ByteArrayInputStream in;
+		for(char l :inputLetters.toCharArray()){
+			in= new ByteArrayInputStream(String.valueOf(l).getBytes());
+			System.setIn(in);
+			System.setOut(new PrintStream(out)); //direct the output 
+			LetterStates result = game.enterLetter();	
+		}
+		
+		assertEquals(true, game.wordIsGuessed);
 		System.setIn(System.in);
 		//System.setOut(System.out);
 

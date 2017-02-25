@@ -43,8 +43,11 @@ public class TwoPlayerGame extends BaseGame {
 				break;
 			case LETTER_NEW_CORRECT:
 				break;
-			case LETTER_ALREADY_ENTERED:
-				triesCount++;
+			case LETTER_ALREADY_ENTERED_CORRECT:
+				//triesCount++;
+				break;
+			case LETTER_ALREADY_ENTERED_NOT_CORRECT:
+				//triesCount++;
 				break;
 			case LETTER_EMPTY_STRING:
 				System.out.println("You entered an empty string");

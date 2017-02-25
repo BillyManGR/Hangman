@@ -6,8 +6,9 @@ public class BaseGame {
 	public enum LetterStates {
 		LETTER_NOT_IN_WORD, 
 		LETTER_NEW_CORRECT, 
-		LETTER_ALREADY_ENTERED,
-		LETTER_EMPTY_STRING,
+		LETTER_ALREADY_ENTERED_CORRECT,
+		LETTER_EMPTY_STRING, 
+		LETTER_ALREADY_ENTERED_NOT_CORRECT,
 	}
 
 	public enum PlayMode {
@@ -15,22 +16,28 @@ public class BaseGame {
 		PLAY_TWO_PLAYERS,
 	}
 	public static String newline = System.getProperty("line.separator");
-	protected boolean wordIsGuessed;
+	public boolean wordIsGuessed;
 	protected boolean showHiddenWord; //print the starts on first try
 	private String wordToGuess;
 
-	private char[] alreadyEnteredLetters;
-	
+	private char[] enteredLettersAll;
+	private char[] enterLettersCorrect;
+
 	public BaseGame() {
 		wordIsGuessed = false;
 		wordToGuess= null;
 		showHiddenWord= true;
-		alreadyEnteredLetters= null;
+		//potential break point; imagine a word consists of 100 different chars :O
+		enteredLettersAll = new char[100];
+		//again this can be as much as  through all the unicode encoing table
+		enterLettersCorrect= new char[100];
 	}
 
 	protected void refreshWordStatus() {
 		wordIsGuessed = false;
 		showHiddenWord= true;
+		enterLettersCorrect= new char[100];
+		enteredLettersAll = new char[100];
 	}
 
 	protected String loadWord() {
@@ -42,31 +49,43 @@ public class BaseGame {
 		System.out.print("Enter a new lettter> ");
 		String keyboard = new Scanner(System.in).nextLine();
 
-		if (keyboard.isEmpty())
-			return LetterStates.LETTER_EMPTY_STRING;
-
+		//don't allow for empty input (just enter)
+		if (keyboard.isEmpty()) return LetterStates.LETTER_EMPTY_STRING;
+		//read the char
+		char inputChar = Character.toUpperCase(keyboard.charAt(0));
 		
-		
-		char inputChar = keyboard.charAt(0);
-
-		if (inEnteredLetters(inputChar, alreadyEnteredLetters)) {
+		//if is already entered letter, but it is not part of the word
+		if (inEnteredLetters(inputChar,enteredLettersAll) && !inEnteredLetters(inputChar,enterLettersCorrect)) {
+			System.out.println(inputChar + " has been already entered");
+			printWord(wordToGuess, enteredLettersAll);
+			return LetterStates.LETTER_ALREADY_ENTERED_NOT_CORRECT;
+		} 
+		//add to the set of all entered letters
+		if(!(inEnteredLetters(inputChar, enteredLettersAll)))
+			enteredLettersAll[findEmptyPosition(enteredLettersAll)] = inputChar;
+		//the letter is already entered and is correct
+		if (inEnteredLetters(inputChar,enterLettersCorrect)) {
 			System.out.println(inputChar + " is already in the word");
-			printWord(wordToGuess, alreadyEnteredLetters);
-			return LetterStates.LETTER_ALREADY_ENTERED;
+			printWord(wordToGuess, enteredLettersAll);
+			return LetterStates.LETTER_ALREADY_ENTERED_CORRECT;
 		} 
+		//the letters is new and it is correct
 		else if (wordToGuess.contains(String.valueOf(inputChar))) {
-			alreadyEnteredLetters[findEmptyPosition(alreadyEnteredLetters)] = inputChar;
-			printWord(wordToGuess, alreadyEnteredLetters);
+			enterLettersCorrect[findEmptyPosition(enterLettersCorrect)] = inputChar;
+			printWord(wordToGuess, enteredLettersAll);
 			return LetterStates.LETTER_NEW_CORRECT;
-		} 
+		}  
+		//the letters is new and is not correct
 		else {
 			System.out.println(inputChar + " is not in the word");
+			printWord(wordToGuess, enteredLettersAll);
 			return LetterStates.LETTER_NOT_IN_WORD;
 		}
 	}
+	
 
 	private void printWordFirstTime() {
-		if (showHiddenWord) {printWord(wordToGuess, alreadyEnteredLetters);showHiddenWord=false;}	
+		if (showHiddenWord) {printWord(wordToGuess, enteredLettersAll);showHiddenWord=false;}	
 	}
 
 	/* Check if letter is in enteredLetters array */
@@ -89,8 +108,14 @@ public class BaseGame {
 		}
 		if (wordGuessed)
 			wordIsGuessed = true;
+		printAlreadyEnteredLetters(enteredLetters2);
 		System.out.print(newline);
 
+	}
+
+	private void printAlreadyEnteredLetters( char[] letters) {
+		System.out.print("  used letters:   "+ "["+new String(letters).replace("\0", "")+"]");
+		
 	}
 
 	/*
@@ -143,13 +168,12 @@ public class BaseGame {
 			System.out.println("The word was " + correctWord);
 		}
 	}
-	
+
 	public void setWordToGuess(String wordToGuess) {
-		this.wordToGuess = wordToGuess;
+		this.wordToGuess = wordToGuess.toUpperCase();
 		//this is not supposed to be here
-		alreadyEnteredLetters = new char[wordToGuess.length()];
 	}
-	
+
 	public String getWordToGuess() {
 		return wordToGuess;
 	}
