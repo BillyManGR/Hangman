@@ -2,14 +2,13 @@ import java.io.*;
 import java.util.Scanner;
 
 public class OpenFile {
-	private final String FILE_PATH_DIR = "data/categories";
+	private final String FILE_PATH_DIR = "data";
 	private int previousRandom;
 	private File[] listOfCategories;
 
 	public OpenFile() {
 		previousRandom = -1;
 		listCategories();
-
 	}
 
 	//Returns a random int E [min, max] which is not the same as the previousRandom
@@ -27,7 +26,7 @@ public class OpenFile {
 	}
 
 	private void listCategories() {
-		File folder = new File(FILE_PATH_DIR);
+		File folder = new File(FILE_PATH_DIR+"/categories");
 		listOfCategories = folder.listFiles();
 		//System.out.println("Number of Categories = "+listOfCategories.length);
 
@@ -48,7 +47,7 @@ public class OpenFile {
 	public String chooseWord(String fileName) {
 		System.out.println("Random file is " + fileName);
 		String word = null;
-		File file = new File(FILE_PATH_DIR + "/" + fileName);
+		File file = new File(FILE_PATH_DIR + "/categories/" + fileName);
 		try {
 			int randomLinePick = (int) (Math.random() * countLines(fileName)) +1;
 			int currentLine = 0;
@@ -77,7 +76,7 @@ public class OpenFile {
 	 * @throws IOException
 	 */
 	private int countLines(String filename) throws IOException {
-		InputStream is = new BufferedInputStream(new FileInputStream(FILE_PATH_DIR + "/" + filename));
+		InputStream is = new BufferedInputStream(new FileInputStream(FILE_PATH_DIR + "/categories/" + filename));
 		try {
 			byte[] c = new byte[1024];
 			int count = 0;
@@ -111,8 +110,8 @@ public class OpenFile {
 		}
 	}
 
-	public static void print_phase(int phase) throws FileNotFoundException { // Prints a file
-		File file = new File("data/phases.txt");
+	public void print_phase(int phase) throws FileNotFoundException { // Prints a file
+		File file = new File(FILE_PATH_DIR+"/phases.txt");
 		try {
 			int current_phase = 0;
 			Scanner sc = new Scanner(file);

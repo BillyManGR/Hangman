@@ -9,9 +9,9 @@ public class BaseGame {
 		PLAY_ONE_PLAYER, 
 		PLAY_TWO_PLAYERS,
 	}
-	private static String ValidCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";		//Valid character
-	private static int MaxNumberOfTries = 7;											//Max # of tries
-	public static String newline = System.getProperty("line.separator");
+	private final static String ValidCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";	//Valid characters
+	private final static int MaxNumberOfTries = 7;											//Max # of tries
+	protected final static String newline = System.getProperty("line.separator");
 	private boolean wordIsGuessed;														//Word has been guessed (or not)
 	private boolean wrong_guess;														//Wrong guess
 	private int triesCount;																//# of unsuccessful tries
@@ -20,19 +20,19 @@ public class BaseGame {
 	private List<Character> alreadyEnteredCharacters;									//Already entered characters
 
 	//Mutator
-	public void setWordToGuess(String word) {
-		wordToGuess = word.toUpperCase();													//BILLY
-		for (int i=0; i<wordToGuess.length(); i++) {										//_ _ _ _ _
+	protected void setWordToGuess(String word) {
+		wordToGuess = word.toUpperCase();												//BILLY
+		for (int i=0; i<wordToGuess.length(); i++) {									//_ _ _ _ _
 			//Space is not considered as a character to guess
 			soFarGuessedWord += (wordToGuess.charAt(i)!=' ') ? "_ ": "  ";
 		}
-		soFarGuessedWord = soFarGuessedWord.substring(0, soFarGuessedWord.length()-1);		//Delete last excessive space
+		soFarGuessedWord = soFarGuessedWord.substring(0, soFarGuessedWord.length()-1);	//Delete last excessive space
 		System.out.println("wordToGuess = "+wordToGuess);
 		System.out.println("soFarGuessedWord = "+soFarGuessedWord);
 	}
 
 	//Constructor
-	public BaseGame() {
+	protected BaseGame() {
 		wordIsGuessed = false;
 		wrong_guess = false;
 		triesCount = 0;
@@ -41,8 +41,35 @@ public class BaseGame {
 		alreadyEnteredCharacters= new ArrayList<>();
 	}
 
-	//Methods
-	public void play() throws FileNotFoundException {					//Playing the game method (invoked outside)
+	//Pre playing methods
+	public static void select_mode() throws FileNotFoundException {		// Select mode
+		if (mode_selection() == PlayMode.PLAY_ONE_PLAYER)				//Check for invalid selection @mode_selection
+			new OnePlayerGame();
+		else {}
+			new TwoPlayerGame();
+	}
+
+	private static PlayMode mode_selection() {
+		while (true) {
+			System.out.println("Please enter '1' for 1-Player or '2' for 2-players mode.");
+			System.out.println("Selection> ");
+			Scanner scanner = new Scanner(System.in);
+			String selection = scanner.nextLine();
+			switch (selection) {
+				case "1":
+					System.out.println("Selected mode is 1 Player");
+					return PlayMode.PLAY_ONE_PLAYER;
+				case "2":
+					System.out.println("Selected mode is 2 players");
+					return PlayMode.PLAY_TWO_PLAYERS;
+				default:
+					System.out.println("Invalid selection. Please enter '1' for 1-Player or '2' for 2-Players mode.");
+			}
+		}
+	}
+
+	//Playing methods
+	protected void play() throws FileNotFoundException {				//Playing the game method (invoked outside)
 		System.out.println("Playing the game now!");
 		boolean game_ended;												//Final condition to end the game or not
 		String input;
@@ -55,7 +82,9 @@ public class BaseGame {
 			checkInput(input);											//Check the input
 			game_ended = wordIsGuessed || triesCount >= MaxNumberOfTries || wrong_guess;
 		} while (!game_ended);											//Has the game ended?
-		if(!wordIsGuessed) phases.print_phase(MaxNumberOfTries);		//Last losing phase
+		if(!wordIsGuessed) {
+			phases.print_phase(MaxNumberOfTries); System.out.println();	//Last losing phase
+		}
 		printFinalMessage(wordIsGuessed, wordToGuess, triesCount);		//Print final message (win or lose)
 	}
 
@@ -111,7 +140,7 @@ public class BaseGame {
 		return !check;													//The check is for invalid character, not valid
 	}
 
-	private static boolean IsValidCharacter(char character) {
+	protected static boolean IsValidCharacter(char character) {
 		return ValidCharacters.contains(String.valueOf(character));
 	}
 
@@ -129,7 +158,7 @@ public class BaseGame {
 	}
 
 	private void characterGuessCheck(char input) {
-		if (wordToGuess.contains(String.valueOf(input))) {							//Correct guessed character
+		if (wordToGuess.contains(String.valueOf(input))) {				//Correct guessed character
 			updateSoFarGuessedWord(input);
 		}
 		else {
@@ -154,7 +183,7 @@ public class BaseGame {
 
 	private void printFinalMessage(boolean win, String correctWord, int triesCount) {
 		if (win) {
-			System.out.print("Congratulations, you guessed the word after " + triesCount + " unsuccessful");
+			System.out.print("Congratulations, you guessed the word after " + triesCount + " unsuccessful ");
 			System.out.println((triesCount==1) ? "try.":"tries.");
 		}
 		else {
@@ -163,36 +192,8 @@ public class BaseGame {
 		}
 	}
 
-
-
-	protected void chooseWhatToDoNext(String previousCat) throws FileNotFoundException{
+	//After playing methods
+	protected void chooseWhatToDoNext() throws FileNotFoundException{
 		System.out.println("Please choose what to do next.");
 	}
-
-	public static void select_mode() throws FileNotFoundException {	// Select mode
-		if (mode_selection() == PlayMode.PLAY_ONE_PLAYER)			//Check for invalid selection @mode_selection
-			new OnePlayerGame();
-		else {}
-			//new TwoPlayerGame();
-	}
-
-	private static PlayMode mode_selection() {
-		while (true) {
-			System.out.println("Please enter '1' for 1-Player or '2' for 2-players mode.");
-			System.out.println("Selection> ");
-			Scanner scanner = new Scanner(System.in);
-			String selection = scanner.nextLine();
-			switch (selection) {
-				case "1":
-					System.out.println("Selected mode is 1 Player");
-					return PlayMode.PLAY_ONE_PLAYER;
-				case "2":
-					System.out.println("Selected mode is 2 players");
-					return PlayMode.PLAY_TWO_PLAYERS;
-				default:
-					System.out.println("Invalid selection. Please enter '1' for 1-Player or '2' for 2-Players mode.");
-			}
-		}
-	}
-
 }
