@@ -2,4 +2,8 @@ Please select one the following categories by pressing the respective number:
 1 General
 2 Animals
 3 Plants
-4 ......
+4 Computer
+5 Food
+6 House
+7 Jobs
+8 Weather

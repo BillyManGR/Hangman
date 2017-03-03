@@ -9,6 +9,8 @@ public class BaseGame {
 		PLAY_ONE_PLAYER, 
 		PLAY_TWO_PLAYERS,
 	}
+	//reg for char number validation,usage: char.matches(regNumber)
+	public static final String regNumber= "[0-9]";
 	private final static String ValidCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";	//Valid characters
 	private final static int MaxNumberOfTries = 7;											//Max # of tries
 	protected final static String newline = System.getProperty("line.separator");

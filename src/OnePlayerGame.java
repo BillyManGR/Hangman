@@ -5,7 +5,12 @@ public class OnePlayerGame extends BaseGame {
 	public enum Category {
 		GENERAL,
 		ANIMALS,
-		PLANTS,
+		PLANTS, 
+		COMPUTER, 
+		HOUSE, 
+		FOOD, 
+		JOBS, 
+		WEATHER,
 	}
 	private OpenFile openFile;
 	private String category;
@@ -22,7 +27,19 @@ public class OnePlayerGame extends BaseGame {
 		}
 		else if (cat==Category.ANIMALS)
 			category = "animals";
+		else if (cat==Category.COMPUTER)
+			category = "computer";
+		else if (cat==Category.FOOD)
+			category = "food";
+		else if (cat==Category.HOUSE)
+			category = "house";
+		else if (cat==Category.JOBS)
+			category = "jobs";
+		else if (cat==Category.WEATHER)
+			category = "weather";
+		
 		else {category = "plants";}
+		System.out.println("Selecter category ee:"+ category);
 		playOnePlayerGame(category);
 	}
 	//Player selects previous category
@@ -100,6 +117,21 @@ public class OnePlayerGame extends BaseGame {
 				case "3":
 					System.out.println("Selected category is Plants");
 					return Category.PLANTS;
+				case "4":
+					System.out.println("Selected category is Computer");
+					return Category.COMPUTER;
+				case "5":
+					System.out.println("Selected category is Food");
+					return Category.FOOD;
+				case "6":
+					System.out.println("Selected category is House");
+					return Category.HOUSE;
+				case "7":
+					System.out.println("Selected category is Jobs");
+					return Category.JOBS;
+				case "8":
+					System.out.println("Selected category is Weather");
+					return Category.WEATHER;
 				default:
 					System.out.println("Invalid selection. Please select a valid option.");
 			}

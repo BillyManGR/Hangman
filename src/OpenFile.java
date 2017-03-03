@@ -45,7 +45,7 @@ public class OpenFile {
 	}
 
 	public String chooseWord(String fileName) {
-		System.out.println("Random file is " + fileName);
+		//System.out.println("Random file is " + fileName);
 		String word = null;
 		File file = new File(FILE_PATH_DIR + "/categories/" + fileName);
 		try {

@@ -1,0 +1,112 @@
+air conditioner
+apartment
+ashtray
+attic
+basement
+bathroom
+bath tub
+bed
+bedding
+bedroom
+blanket
+bolt
+bookcase
+brick
+carpet
+ceiling
+cellar
+cement
+chair
+chimney
+closet
+concrete
+couch
+curtain
+cushion
+desk
+dining room
+door
+doorstep
+drapes
+dresser
+fan
+faucet
+fireplace
+floor
+foundation
+furnace
+furniture
+glass
+hall
+hinge
+key
+lamp
+living room
+lock
+mirror
+nail
+paint
+picture
+plaster
+plumbing
+plywood
+porch
+rafter
+roof
+room
+rug
+screw
+shelf
+sink
+sofa
+stairs
+table
+toilet
+wall
+window
+wire
+wood
+armchair
+baby bed
+bed
+bookcase
+cabinet
+chair
+chest
+closet
+cupboard
+desk
+dresser
+hall stand
+lamp
+seat
+shelf
+sideboard
+stool
+table
+attic
+basement
+bathroom
+bedroom
+cellar
+closet
+den
+dining room
+front yard
+garage
+hall
+hallway
+kitchen
+laundry
+living room
+master bedroom
+office
+pantry
+patio
+playroom
+porch
+staircase
+study
+sun room
+TV room
+workshop
