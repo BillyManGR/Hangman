@@ -68,8 +68,8 @@ public class TwoPlayerGame extends BaseGame {
 		boolean check = false;										//Assume subword(s) are not one character
 		String[] subwords = input.split(" "); 					//String array, each subword is text between spaces
 		for (String subword: subwords) {							//If subword is character, stop
-			if (subword.length()<2) {
-				System.out.println("Your word subwords that are characters. Try again");
+			if ((subword.length()<2 && !subword.equals("I") && !subword.matches(regNumber))) {
+				System.out.println("Your word contains subwords that are characters. Try again");
 				check = true; break;
 			}
 		}
