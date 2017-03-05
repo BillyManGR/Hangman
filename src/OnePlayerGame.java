@@ -13,7 +13,7 @@ public class OnePlayerGame extends BaseGame {
 		WEATHER,
 	}
 	private OpenFile openFile;
-	private String category;
+	private static String category;
 
 	// constructors
 	//Player selects category

@@ -45,21 +45,20 @@ public class OpenFile {
 		//			e.printStackTrace();
 		//		}
 		listOfCategories= new String[8];
-		listOfCategories[0] = "General.txt";
-		listOfCategories[1] = "Animals.txt";
-		listOfCategories[2] = "Plants.txt";
-		listOfCategories[3] = "Computer.txt";
-		listOfCategories[4] = "Food.txt";
-		listOfCategories[5] = "House.txt";
-		listOfCategories[5] = "Jobs.txt";
-		listOfCategories[6] = "Weather.txt";
+		listOfCategories[0] = "general.txt";
+		listOfCategories[1] = "animals.txt";
+		listOfCategories[2] = "plants.txt";
+		listOfCategories[3] = "computer.txt";
+		listOfCategories[4] = "food.txt";
+		listOfCategories[5] = "house.txt";
+		listOfCategories[5] = "jobs.txt";
+		listOfCategories[6] = "weather.txt";
 
 	}
 
 	public String chooseRandomCategory() {					//Returns the filename of a random category
-		int randomFileIndex = generateNewRandom(0, listOfCategories.length-1, previousRandom);
+		int randomFileIndex = generateNewRandom(1, listOfCategories.length-1, previousRandom);
 		previousRandom = randomFileIndex;
-		//System.out.println("returned new random" + randomFileIndex);
 		return listOfCategories[randomFileIndex];
 
 	}
