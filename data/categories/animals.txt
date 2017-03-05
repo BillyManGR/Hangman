@@ -1,27 +1,25 @@
 dog
 cat
-cow 
+cow
 Barracuda
 Bat
-Bear 
+Bear
 Beaver
 Bee
-Bird 
-Also see Aves
+Bird
 Bison
 Boar 
-Also see Pig
 Buffalo
 Butterfly
 Camel
 Caribou
 Cassowary
-Cat 
+Cat
 Caterpillar
 Cattle
 Chamois
 Cheetah
-Chicken 
+Chicken
 Chimpanzee
 Chinchilla
 Chough
@@ -38,13 +36,13 @@ Crow
 Curlew
 Deer
 Dinosaur
-Dog 
+Dog
 Dogfish
 Dolphin
 Dotterel
 Dove
 Dragonfly
-Duck 
+Duck
 Dugong
 Dunlin
 Eagle
@@ -53,12 +51,11 @@ Eel
 Eland
 Elephant
 Elephant seal
-Elk (wapiti)
 Emu
 Falcon
 Ferret
 Finch
-Fish (list)
+Fish
 Flamingo
 Fly
 Fox
@@ -70,7 +67,7 @@ Giant panda
 Giraffe
 Gnat
 Gnu
-Goat (list)
+Goa
 Goldfinch
 Goosander
 Goose
@@ -90,7 +87,7 @@ Heron
 Herring
 Hippopotamus
 Hornet
-Horse 
+Horse
 Hummingbird
 Hyena
 Ibex

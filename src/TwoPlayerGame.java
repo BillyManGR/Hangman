@@ -11,7 +11,7 @@ public class TwoPlayerGame extends BaseGame {
 
 	private void playTwoPlayerGame() throws FileNotFoundException{
 		String word = loadWord();
-		System.out.println("Entered word " + word);
+		//System.out.println("Entered word " + word);
 		setWordToGuess(word);
 		play();
 		chooseWhatToDoNext();
@@ -27,7 +27,7 @@ public class TwoPlayerGame extends BaseGame {
 		boolean validWord = false;
 		String input="";
 		while (!validWord) {
-			System.out.println("Word to guess> ");
+			System.out.print("Word to guess> ");
 			Scanner scanner = new Scanner(System.in);
 			input = scanner.nextLine().toUpperCase();
 			if (inputLengthCheck(input))	continue;							//Length less than 2 characters

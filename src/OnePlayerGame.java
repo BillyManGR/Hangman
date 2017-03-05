@@ -39,7 +39,6 @@ public class OnePlayerGame extends BaseGame {
 			category = "weather";
 		
 		else {category = "plants";}
-		System.out.println("Selecter category ee:"+ category);
 		playOnePlayerGame(category);
 	}
 	//Player selects previous category
@@ -51,7 +50,7 @@ public class OnePlayerGame extends BaseGame {
 
 	private String loadWord(String category) {
 		String filename = category+".txt";
-		System.out.println("Choosing word from "+filename);
+//		System.out.println("Choosing word from "+filename);
 		return openFile.chooseWord(filename);
 	}
 
@@ -104,7 +103,8 @@ public class OnePlayerGame extends BaseGame {
 
 	private Category category_selection() throws FileNotFoundException {
 		while (true) {
-			openFile.print_file("data/categories.txt");
+			openFile.print_file("categories.txt");
+			System.out.print("Selection> ");
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();
 			switch (selection) {

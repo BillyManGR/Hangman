@@ -30,8 +30,8 @@ public class BaseGame {
 			soFarGuessedWord += (wordToGuess.charAt(i)!=' ') ? "_ ": "  ";
 		}
 		soFarGuessedWord = soFarGuessedWord.substring(0, soFarGuessedWord.length()-1);	//Delete last excessive space
-		System.out.println("wordToGuess = "+wordToGuess);
-		System.out.println("soFarGuessedWord = "+soFarGuessedWord);
+//		System.out.println("wordToGuess = "+wordToGuess);
+//		System.out.println("soFarGuessedWord = "+soFarGuessedWord);
 	}
 
 	//Constructor
@@ -55,7 +55,7 @@ public class BaseGame {
 	private static PlayMode mode_selection() {
 		while (true) {
 			System.out.println("Please enter '1' for 1-Player or '2' for 2-players mode.");
-			System.out.println("Selection> ");
+			System.out.print("Selection> ");
 			Scanner scanner = new Scanner(System.in);
 			String selection = scanner.nextLine();
 			switch (selection) {
