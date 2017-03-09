@@ -1,0 +1,31 @@
+﻿Merge branch 'master' into billy
+
+# Conflicts:
+#	src/code/BaseGame.java
+#	src/code/OnePlayerGame.java
+#	src/code/OpenFile.java
+#	src/code/TwoPlayerGame.java
+#	src/tests/LetterInputTest.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch billy
+# Your branch is up-to-date with 'origin/billy'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   src/code/BaseGame.java
+#	new file:   src/code/OnePlayerGame.java
+#	new file:   src/code/OpenFile.java
+#	new file:   src/code/TwoPlayerGame.java
+#	new file:   src/tests/LetterInputTest.java
+#	new file:   words/general
+#
+

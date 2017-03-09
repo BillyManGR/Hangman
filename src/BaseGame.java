@@ -180,7 +180,6 @@ public class BaseGame {
 			}
 		}
 		if (!soFarGuessedWord.contains(String.valueOf('_'))) wordIsGuessed=true;	//Word has been guessed
-		System.out.println("The word was "+wordToGuess);
 	
 	}
 
@@ -188,6 +187,7 @@ public class BaseGame {
 		if (win) {
 			System.out.print("Congratulations, you guessed the word after " + triesCount + " unsuccessful ");
 			System.out.println((triesCount==1) ? "try.":"tries.");
+			System.out.println("The word is "+wordToGuess);
 		}
 		else {
 			System.out.println("Sorry, you did not manage to guess the word.");

@@ -14,7 +14,7 @@ public class OpenFile {
 	//Returns a random int E [min, max] which is not the same as the previousRandom
 	private int generateNewRandom(int min, int max, int previousRandom) {
 		int range = (max - min) + 1;
-		int newRandom = (int)(Math.random() * range) + min;
+		int newRandom = (int)(Math.random() * range) ;
 		if (newRandom != previousRandom)
 			return newRandom;
 		else {
@@ -45,12 +45,11 @@ public class OpenFile {
 		//			e.printStackTrace();
 		//		}
 		listOfCategories= new String[8];
-		listOfCategories[0] = "general.txt";
-		listOfCategories[1] = "animals.txt";
-		listOfCategories[2] = "plants.txt";
-		listOfCategories[3] = "computer.txt";
-		listOfCategories[4] = "food.txt";
-		listOfCategories[5] = "house.txt";
+		listOfCategories[0] = "animals.txt";
+		listOfCategories[1] = "plants.txt";
+		listOfCategories[2] = "computer.txt";
+		listOfCategories[3] = "food.txt";
+		listOfCategories[4] = "house.txt";
 		listOfCategories[5] = "jobs.txt";
 		listOfCategories[6] = "weather.txt";
 
